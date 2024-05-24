@@ -1,12 +1,12 @@
 import { Schema, model } from 'mongoose';
 import {
-  Guardian,
-  LocalGuardian,
-  Student,
-  UserName,
+  IGuardian,
+  ILocalGuardian,
+  IStudent,
+  IUserName,
 } from './student.interface';
 
-const userNameSchema = new Schema<UserName>({
+const userNameSchema = new Schema<IUserName>({
   firstName: {
     type: String,
     required: true,
@@ -20,7 +20,7 @@ const userNameSchema = new Schema<UserName>({
   },
 });
 
-const guardianSchema = new Schema<Guardian>({
+const guardianSchema = new Schema<IGuardian>({
   fatherName: {
     type: String,
     required: true,
@@ -47,7 +47,7 @@ const guardianSchema = new Schema<Guardian>({
   },
 });
 
-const localGuardianSchema = new Schema<LocalGuardian>({
+const localGuardianSchema = new Schema<ILocalGuardian>({
   name: {
     type: String,
     required: true,
@@ -66,11 +66,17 @@ const localGuardianSchema = new Schema<LocalGuardian>({
   },
 });
 
-const studentSchema = new Schema<Student>({
+const studentSchema = new Schema<IStudent>({
   id: {
     type: String,
     unique: true,
     required: true,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    required: [true, 'User Id is required'],
+    unique: true,
+    ref: 'User',
   },
   name: {
     type: userNameSchema,
@@ -121,12 +127,6 @@ const studentSchema = new Schema<Student>({
   profileImage: {
     type: String,
   },
-
-  isActive: {
-    type: String,
-    enum: ['active', 'blocked'],
-    default: 'active',
-  },
 });
 
-export const StudentModel = model<Student>('Student', studentSchema);
+export const StudentModel = model<IStudent>('Student', studentSchema);

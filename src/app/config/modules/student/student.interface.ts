@@ -1,4 +1,6 @@
-export interface Guardian {
+import { Types } from 'mongoose';
+
+export interface IGuardian {
   fatherName: string;
   fatherOccupation: string;
   fatherContactNo: string;
@@ -7,23 +9,24 @@ export interface Guardian {
   motherContactNo: string;
 }
 
-export interface UserName {
+export interface IUserName {
   firstName: string;
   middleName?: string;
   lastName: string;
 }
 
-export interface LocalGuardian {
+export interface ILocalGuardian {
   name: string;
   occupation: string;
   address: string;
   contactNo: string;
 }
 
-export interface Student {
+export interface IStudent {
   id: string;
-  name: UserName;
-  gender: 'male' | 'female';
+  user: Types.ObjectId;
+  name: IUserName;
+  gender: 'male' | 'female' | 'Other';
   dateOfBirth?: string;
   email: string;
   contactNumber: string;
@@ -31,8 +34,7 @@ export interface Student {
   bloodGroup?: 'O+' | 'O-' | 'O+' | 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-';
   presentAddress: string;
   permanentAddress: string;
-  guardian: Guardian;
-  localGuardian: LocalGuardian;
+  guardian: IGuardian;
+  localGuardian: ILocalGuardian;
   profileImage?: string;
-  isActive: 'active' | 'inActive';
 }
