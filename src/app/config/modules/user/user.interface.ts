@@ -1,6 +1,6 @@
 // user interface
 
-export interface TUser {
+export interface IUser {
   id: string;
   password: string;
   needsPasswordChange: boolean;
