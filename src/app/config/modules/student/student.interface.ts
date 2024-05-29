@@ -1,4 +1,4 @@
-import { Types } from 'mongoose';
+import { Model, Types } from 'mongoose';
 
 export interface IGuardian {
   fatherName: string;
@@ -37,4 +37,9 @@ export interface IStudent {
   guardian: IGuardian;
   localGuardian: ILocalGuardian;
   profileImage?: string;
+}
+
+// for creating static
+export interface StudentModel extends Model<IStudent> {
+  isUserExists(id: string): Promise<IStudent | null>;
 }

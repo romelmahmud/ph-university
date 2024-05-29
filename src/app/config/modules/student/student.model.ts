@@ -4,6 +4,7 @@ import {
   ILocalGuardian,
   IStudent,
   IUserName,
+  StudentModel,
 } from './student.interface';
 
 const userNameSchema = new Schema<IUserName>({
@@ -129,4 +130,26 @@ const studentSchema = new Schema<IStudent>({
   },
 });
 
-export const StudentModel = model<IStudent>('Student', studentSchema);
+// Query Middleware
+studentSchema.pre('find', function (next) {
+  this.find({ isDeleted: { $ne: true } });
+  next();
+});
+
+studentSchema.pre('findOne', function (next) {
+  this.find({ isDeleted: { $ne: true } });
+  next();
+});
+
+studentSchema.pre('aggregate', function (next) {
+  this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
+  next();
+});
+
+//creating a custom static method
+studentSchema.statics.isUserExists = async function (id: string) {
+  const existingUser = await Student.findOne({ id });
+  return existingUser;
+};
+
+export const Student = model<IStudent, StudentModel>('Student', studentSchema);
