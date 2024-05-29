@@ -89,7 +89,7 @@ const studentSchema = new Schema<IStudent>({
       values: ['male', 'female', 'other'],
       message: "Gender must be 'male' or 'female' or 'other'",
     },
-    required: true,
+    required: [true, 'Gender is required'],
   },
   dateOfBirth: String,
   email: {
