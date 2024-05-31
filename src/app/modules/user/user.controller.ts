@@ -1,4 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
+import httpStatus from 'http-status';
+import sendResponse from '../../utils/sendResponse';
 import { UserServices } from './user.service';
 
 const createStudent = async (
@@ -15,8 +17,15 @@ const createStudent = async (
 
     // send response
 
-    res.status(200).json({
+    // res.status(200).json({
+    //   success: true,
+    //   message: 'Student is created successfully',
+    //   data: result,
+    // });
+
+    sendResponse(res, {
       success: true,
+      statusCode: httpStatus.OK,
       message: 'Student is created successfully',
       data: result,
     });
