@@ -89,21 +89,20 @@ const studentSchema = new Schema<IStudent>({
       values: ['male', 'female', 'other'],
       message: "Gender must be 'male' or 'female' or 'other'",
     },
-    required: [true, 'Gender is required'],
   },
   dateOfBirth: String,
   email: {
     type: String,
-    required: true,
+    required: [true, 'email is required'],
     unique: true,
   },
   contactNumber: {
     type: String,
-    required: true,
+    required: [true, 'contact number is required'],
   },
   emergencyContactNo: {
     type: String,
-    required: true,
+    required: [true, 'emergency contact number is required'],
   },
   bloodGroup: {
     type: String,
@@ -111,22 +110,26 @@ const studentSchema = new Schema<IStudent>({
   },
   presentAddress: {
     type: String,
-    required: true,
+    required: [true, 'present address is required'],
   },
   permanentAddress: {
     type: String,
-    required: true,
+    required: [true, 'permanent address is required'],
   },
   guardian: {
     type: guardianSchema,
-    required: true,
+    required: [true, 'Guardian information is required'],
   },
   localGuardian: {
     type: localGuardianSchema,
-    required: true,
+    required: [true, 'Local Guardian is required'],
   },
   profileImage: {
     type: String,
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false,
   },
 });
 

@@ -37,6 +37,7 @@ export interface IStudent {
   guardian: IGuardian;
   localGuardian: ILocalGuardian;
   profileImage?: string;
+  isDeleted: boolean;
 }
 
 // for creating static
