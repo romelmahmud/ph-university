@@ -1,43 +1,34 @@
 import { Schema, model } from 'mongoose';
-import { TAcademicSemester, TMonths } from './academicSemester.interface';
-
-const Months: TMonths[] = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+import {
+  AcademicSemesterCode,
+  AcademicSemesterName,
+  Months,
+} from './academicSemester.constant';
+import { TAcademicSemester } from './academicSemester.interface';
 
 const academicSemesterSchema = new Schema<TAcademicSemester>(
   {
     name: {
       type: String,
-      enum: {
-        values: ['Autumn', 'Summer', 'Fall'],
-        message:
-          "Academic Semester name must be 'Autumn' or 'Summer' or 'Fall'",
-      },
+      enum: AcademicSemesterName,
+      required: [
+        true,
+        "Academic Semester name must be 'Autumn' or 'Summer' or 'Fall'",
+      ],
     },
     code: {
       type: String,
-      enum: {
-        values: ['01', '02', '03'],
-        message: "Academic Semester code must be '01' or '02' or '03'",
-      },
+      enum: AcademicSemesterCode,
+      required: [true, "Academic Semester code must be '01' or '02' or '03'"],
     },
+
     year: {
       type: Date,
       require: [true, 'Year is required'],
     },
     startMonth: {
       type: String,
+      required: true,
       enum: {
         values: Months,
         message: 'Months is required',
@@ -45,6 +36,7 @@ const academicSemesterSchema = new Schema<TAcademicSemester>(
     },
     endMonth: {
       type: String,
+      required: true,
       enum: {
         values: Months,
         message: 'Months is required',
