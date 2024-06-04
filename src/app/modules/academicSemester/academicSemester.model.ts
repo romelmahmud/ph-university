@@ -23,7 +23,7 @@ const academicSemesterSchema = new Schema<TAcademicSemester>(
     },
 
     year: {
-      type: Date,
+      type: String,
       require: [true, 'Year is required'],
     },
     startMonth: {
