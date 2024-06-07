@@ -20,7 +20,7 @@ const getAllAcademicFaculties = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Academic faculty is fetched successfully',
+    message: 'Academic faculty are fetched successfully',
     data: result,
   });
 });
