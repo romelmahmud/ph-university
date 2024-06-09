@@ -135,6 +135,10 @@ const studentSchema = new Schema<IStudent>({
     type: Boolean,
     default: false,
   },
+  academicDepartment: {
+    type: Schema.Types.ObjectId,
+    ref: 'AcademicDepartment',
+  },
 });
 
 // Query Middleware
