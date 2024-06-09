@@ -4,7 +4,7 @@ import { AcademicSemester } from '../academicSemester/academicSemester.model';
 import { IStudent } from '../student/student.interface';
 import { Student } from '../student/student.model';
 import { IUser } from './user.interface';
-import { UserModel } from './user.model';
+import { User } from './user.model';
 import { generateStudentId } from './user.utils';
 
 const createStudentIntoDB = async (password: string, payload: IStudent) => {
@@ -22,7 +22,7 @@ const createStudentIntoDB = async (password: string, payload: IStudent) => {
   userData.id = await generateStudentId(admissionSemester);
 
   // creating a user
-  const newUser = await UserModel.create(userData);
+  const newUser = await User.create(userData);
   //create a student
   if (Object.keys(newUser).length) {
     //set id, _id as user reference
