@@ -11,6 +11,8 @@ const createStudent: RequestHandler = catchAsync(async (req, res) => {
 
   const result = await UserServices.createStudentIntoDB(password, student);
 
+  // console.log(result);
+
   // send response
 
   sendResponse(res, {
