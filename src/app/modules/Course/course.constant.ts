@@ -1,1 +1,1 @@
-// course constant
+export const CourseSearchableFields = ['title', 'prefix', 'code'];
